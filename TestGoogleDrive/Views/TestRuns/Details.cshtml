@@ -1,0 +1,48 @@
+﻿@model TestGoogleDrive.Models.TestRun
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>TestRun</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsDriveLetter)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsDriveLetter)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsMirrored)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsMirrored)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AppearsExactlyOnce)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AppearsExactlyOnce)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NotUnderPlainDrives)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NotUnderPlainDrives)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OpensMyDriveDirectly)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OpensMyDriveDirectly)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

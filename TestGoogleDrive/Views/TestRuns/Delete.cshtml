@@ -1,0 +1,51 @@
+﻿@model TestGoogleDrive.Models.TestRun
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>TestRun</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsDriveLetter)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsDriveLetter)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsMirrored)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsMirrored)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AppearsExactlyOnce)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AppearsExactlyOnce)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NotUnderPlainDrives)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NotUnderPlainDrives)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OpensMyDriveDirectly)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OpensMyDriveDirectly)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
