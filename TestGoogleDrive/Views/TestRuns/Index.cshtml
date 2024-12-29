@@ -34,7 +34,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.IsDriveLetter)
+                @Html.DisplayTextFor(modelItem => item.IsDriveLetter) 
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsMirrored)
