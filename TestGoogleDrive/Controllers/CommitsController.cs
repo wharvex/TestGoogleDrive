@@ -10,24 +10,22 @@ using TestGoogleDrive.Models;
 
 namespace TestGoogleDrive.Controllers
 {
-    public class TestRunsController : Controller
+    public class CommitsController : Controller
     {
         private readonly TestGoogleDriveContext _context;
 
-        public TestRunsController(TestGoogleDriveContext context)
+        public CommitsController(TestGoogleDriveContext context)
         {
             _context = context;
         }
 
-        // GET: TestRuns
+        // GET: Commits
         public async Task<IActionResult> Index()
         {
-            var x = await _context.TestRun.ToListAsync();
-            x.ForEach(y => y.CommitName = _context.Find<Commit>(y.CommitId)?.Name ?? "??");
-            return View(x);
+            return View(await _context.Commit.ToListAsync());
         }
 
-        // GET: TestRuns/Details/5
+        // GET: Commits/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,48 +33,39 @@ namespace TestGoogleDrive.Controllers
                 return NotFound();
             }
 
-            var testRun = await _context.TestRun.FirstOrDefaultAsync(m => m.Id == id);
-            if (testRun == null)
+            var commit = await _context.Commit
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (commit == null)
             {
                 return NotFound();
             }
 
-            return View(testRun);
+            return View(commit);
         }
 
-        // GET: TestRuns/Create
+        // GET: Commits/Create
         public IActionResult Create()
         {
-            ViewData["commits"] = new SelectList(
-                _context.Commit.ToList(),
-                nameof(Commit.Id),
-                nameof(Commit.Name)
-            );
             return View();
         }
 
-        // POST: TestRuns/Create
+        // POST: Commits/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(
-            [Bind(
-                "Id,CommitId,IsDriveLetter,IsMirrored,AppearsExactlyOnce,NotUnderPlainDrives,OpensMyDriveDirectly"
-            )]
-                TestRun testRun
-        )
+        public async Task<IActionResult> Create([Bind("Id,SourceCommit,ForkCommit")] Commit commit)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(testRun);
+                _context.Add(commit);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(testRun);
+            return View(commit);
         }
 
-        // GET: TestRuns/Edit/5
+        // GET: Commits/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -84,28 +73,22 @@ namespace TestGoogleDrive.Controllers
                 return NotFound();
             }
 
-            var testRun = await _context.TestRun.FindAsync(id);
-            if (testRun == null)
+            var commit = await _context.Commit.FindAsync(id);
+            if (commit == null)
             {
                 return NotFound();
             }
-            return View(testRun);
+            return View(commit);
         }
 
-        // POST: TestRuns/Edit/5
+        // POST: Commits/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(
-            int id,
-            [Bind(
-                "Id,IsDriveLetter,IsMirrored,AppearsExactlyOnce,NotUnderPlainDrives,OpensMyDriveDirectly"
-            )]
-                TestRun testRun
-        )
+        public async Task<IActionResult> Edit(int id, [Bind("Id,SourceCommit,ForkCommit")] Commit commit)
         {
-            if (id != testRun.Id)
+            if (id != commit.Id)
             {
                 return NotFound();
             }
@@ -114,12 +97,12 @@ namespace TestGoogleDrive.Controllers
             {
                 try
                 {
-                    _context.Update(testRun);
+                    _context.Update(commit);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TestRunExists(testRun.Id))
+                    if (!CommitExists(commit.Id))
                     {
                         return NotFound();
                     }
@@ -130,10 +113,10 @@ namespace TestGoogleDrive.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(testRun);
+            return View(commit);
         }
 
-        // GET: TestRuns/Delete/5
+        // GET: Commits/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -141,33 +124,34 @@ namespace TestGoogleDrive.Controllers
                 return NotFound();
             }
 
-            var testRun = await _context.TestRun.FirstOrDefaultAsync(m => m.Id == id);
-            if (testRun == null)
+            var commit = await _context.Commit
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (commit == null)
             {
                 return NotFound();
             }
 
-            return View(testRun);
+            return View(commit);
         }
 
-        // POST: TestRuns/Delete/5
+        // POST: Commits/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var testRun = await _context.TestRun.FindAsync(id);
-            if (testRun != null)
+            var commit = await _context.Commit.FindAsync(id);
+            if (commit != null)
             {
-                _context.TestRun.Remove(testRun);
+                _context.Commit.Remove(commit);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TestRunExists(int id)
+        private bool CommitExists(int id)
         {
-            return _context.TestRun.Any(e => e.Id == id);
+            return _context.Commit.Any(e => e.Id == id);
         }
     }
 }

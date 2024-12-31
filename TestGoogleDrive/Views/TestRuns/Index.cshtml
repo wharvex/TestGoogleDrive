@@ -13,6 +13,12 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                Commit
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.IsDriveLetter)
             </th>
             <th>
@@ -33,6 +39,12 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id) 
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommitName) 
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsDriveLetter) 
             </td>
