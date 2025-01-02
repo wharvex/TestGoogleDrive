@@ -62,7 +62,7 @@ namespace TestGoogleDrive.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
             [Bind(
-                "Id,CommitId,IsDriveLetter,IsMirrored,AppearsExactlyOnce,NotUnderPlainDrives,OpensMyDriveDirectly"
+                "Id,CommitId,StreamLoc,Syncing,AppearsExactlyOnce,NotUnderPlainDrives,OpensMyDriveDirectly"
             )]
                 TestRun testRun
         )
