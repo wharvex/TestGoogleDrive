@@ -13,16 +13,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.DisplayNameFor(model => model.CommitId)
             </th>
             <th>
-                Commit
+                @Html.DisplayNameFor(model => model.Syncing)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsDriveLetter)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsMirrored)
+                @Html.DisplayNameFor(model => model.StreamLoc)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.AppearsExactlyOnce)
@@ -46,10 +43,10 @@
                 @Html.DisplayFor(modelItem => item.CommitName) 
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IsDriveLetter) 
+                @Html.DisplayFor(modelItem => item.Syncing) 
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IsMirrored)
+                @Html.DisplayFor(modelItem => item.StreamLoc)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AppearsExactlyOnce)
