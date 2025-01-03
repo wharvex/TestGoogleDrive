@@ -22,9 +22,7 @@ namespace TestGoogleDrive.Controllers
         // GET: TestRuns
         public async Task<IActionResult> Index()
         {
-            var x = await _context.TestRun.ToListAsync();
-            x.ForEach(y => y.CommitName = _context.Find<Commit>(y.CommitId)?.Name ?? "??");
-            return View(x);
+            return View(await _context.TestRun.ToListAsync());
         }
 
         // GET: TestRuns/Details/5
@@ -67,18 +65,18 @@ namespace TestGoogleDrive.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
             [Bind(
-                "Id,CommitId,StreamLoc,Syncing,AppearsExactlyOnce,NotUnderPlainDrives,OpensMyDriveDirectly"
+                "Id,CommitId,ConfigId,AppearsExactlyOnce,NotUnderPlainDrives,OpensMyDriveDirectly"
             )]
                 TestRun testRun
         )
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(testRun);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(testRun);
+            if (!ModelState.IsValid)
+                return View(testRun);
+            testRun.CommitName = _context.Find<Commit>(testRun.CommitId)?.Name ?? "??";
+            testRun.ConfigName = _context.Find<Config>(testRun.ConfigId)?.Name ?? "??";
+            _context.Add(testRun);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: TestRuns/Edit/5
