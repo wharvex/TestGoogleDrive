@@ -52,6 +52,11 @@ namespace TestGoogleDrive.Controllers
                 nameof(Commit.Id),
                 nameof(Commit.Name)
             );
+            ViewData["configs"] = new SelectList(
+                _context.Config.ToList(),
+                nameof(Config.Id),
+                nameof(Config.Name)
+            );
             return View();
         }
 

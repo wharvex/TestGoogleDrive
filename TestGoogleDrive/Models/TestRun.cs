@@ -16,11 +16,12 @@ public class TestRun
     [MaxLength(100)]
     public string CommitName { get; set; } = "??";
 
-    [DisplayName("Streaming Location")]
-    public StreamLoc StreamLoc { get; set; }
+    [ForeignKey("Config")]
+    [DisplayName("Config")]
+    public int ConfigId { get; set; }
 
-    [DisplayName("Syncing Options")]
-    public Syncing Syncing { get; set; }
+    [MaxLength(100)]
+    public string ConfigName { get; set; } = "??";
 
     [UIHint("_BoolIconTemplatePartial")]
     [DisplayName("Appears exactly once under 'Cloud Drives'")]

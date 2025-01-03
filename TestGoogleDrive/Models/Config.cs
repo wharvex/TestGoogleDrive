@@ -25,4 +25,6 @@ public class Config
 
     [DisplayName("Syncing Options")]
     public Syncing Syncing { get; set; }
+
+    public string Name => "Syncing " + Syncing + " with StreamLoc " + StreamLoc;
 }
