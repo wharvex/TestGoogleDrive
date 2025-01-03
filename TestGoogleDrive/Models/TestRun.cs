@@ -4,18 +4,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TestGoogleDrive.Models;
 
-public enum Syncing
-{
-    Stream,
-    Mirror,
-}
-
-public enum StreamLoc
-{
-    Folder,
-    DriveLetter,
-}
-
 public class TestRun
 {
     [Key]

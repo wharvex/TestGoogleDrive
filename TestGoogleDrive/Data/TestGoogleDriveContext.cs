@@ -14,4 +14,8 @@ public class TestGoogleDriveContext : DbContext
 
     public DbSet<TestRun> TestRun { get; set; } = default!;
     public DbSet<Commit> Commit { get; set; } = default!;
+
+    public DbSet<ConfigPath> ConfigPath { get; set; } = default!;
+
+    public DbSet<TestGoogleDrive.Models.Config> Config { get; set; } = default!;
 }
