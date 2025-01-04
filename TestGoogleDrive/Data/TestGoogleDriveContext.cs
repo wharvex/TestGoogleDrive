@@ -17,5 +17,5 @@ public class TestGoogleDriveContext : DbContext
 
     public DbSet<ConfigPath> ConfigPath { get; set; } = default!;
 
-    public DbSet<TestGoogleDrive.Models.Config> Config { get; set; } = default!;
+    public DbSet<Config> Config { get; set; } = default!;
 }

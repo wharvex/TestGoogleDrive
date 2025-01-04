@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TestGoogleDrive.Models;
 
@@ -11,9 +12,10 @@ public class ConfigPath
     [MaxLength(100)]
     public string Path { get; set; } = string.Empty;
 
-    [DisplayName("Streaming Location")]
-    public StreamLoc StreamLoc { get; set; }
+    [ForeignKey("Config")]
+    [DisplayName("Config")]
+    public int ConfigId { get; set; }
 
-    [DisplayName("Syncing Options")]
-    public Syncing Syncing { get; set; }
+    [MaxLength(100)]
+    public string ConfigName { get; set; } = "??";
 }

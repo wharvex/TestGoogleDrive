@@ -16,12 +16,9 @@
                 @Html.DisplayNameFor(model => model.Path)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StreamLoc)
+                @Html.DisplayNameFor(model => model.ConfigId)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Syncing)
-            </th>
-            <th></th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -31,10 +28,7 @@
                 @Html.DisplayFor(modelItem => item.Path)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StreamLoc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Syncing)
+                @Html.DisplayFor(modelItem => item.ConfigName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

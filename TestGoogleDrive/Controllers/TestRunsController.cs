@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -71,7 +72,10 @@ namespace TestGoogleDrive.Controllers
         )
         {
             if (!ModelState.IsValid)
+            {
+                Debug.WriteLine("Invalid model state");
                 return View(testRun);
+            }
             testRun.CommitName = _context.Find<Commit>(testRun.CommitId)?.Name ?? "??";
             testRun.ConfigName = _context.Find<Config>(testRun.ConfigId)?.Name ?? "??";
             _context.Add(testRun);

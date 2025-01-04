@@ -1,0 +1,26 @@
+﻿@model TestGoogleDrive.Models.ConfigPath
+
+<div>
+    <div class="h6">
+        Config
+    </div>
+    <div class="ps-2 pb-3">
+        <div class="form-group">
+            <select class="form-select-input" asp-for="ConfigId" asp-items=@(ViewData["configs"] as IEnumerable<SelectListItem>)>
+                <option value="">Choose config...</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="h6">
+        Path
+    </div>
+    <div class="ps-2 pb-3">
+        <div class="form-group">
+            <label asp-for="Path" class="control-label"></label>
+            <input asp-for="Path" class="form-control"/>
+            <span asp-validation-for="Path" class="text-danger">Invalid input</span>
+        </div>
+    </div>
+</div>

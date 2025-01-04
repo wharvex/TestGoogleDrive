@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -33,8 +34,7 @@ namespace TestGoogleDrive.Controllers
                 return NotFound();
             }
 
-            var configPath = await _context.ConfigPath
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var configPath = await _context.ConfigPath.FirstOrDefaultAsync(m => m.Id == id);
             if (configPath == null)
             {
                 return NotFound();
@@ -46,6 +46,11 @@ namespace TestGoogleDrive.Controllers
         // GET: ConfigPaths/Create
         public IActionResult Create()
         {
+            ViewData["configs"] = new SelectList(
+                _context.Config.ToList(),
+                nameof(Config.Id),
+                nameof(Config.Name)
+            );
             return View();
         }
 
@@ -54,15 +59,17 @@ namespace TestGoogleDrive.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Path,StreamLoc,Syncing")] ConfigPath configPath)
+        public async Task<IActionResult> Create([Bind("Id,ConfigId,Path")] ConfigPath configPath)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Add(configPath);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                Debug.WriteLine("Invalid model state");
+                return View(configPath);
             }
-            return View(configPath);
+            configPath.ConfigName = _context.Find<Config>(configPath.ConfigId)?.Name ?? "??";
+            _context.Add(configPath);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: ConfigPaths/Edit/5
@@ -86,7 +93,10 @@ namespace TestGoogleDrive.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Path,StreamLoc,Syncing")] ConfigPath configPath)
+        public async Task<IActionResult> Edit(
+            int id,
+            [Bind("Id,Path,StreamLoc,Syncing")] ConfigPath configPath
+        )
         {
             if (id != configPath.Id)
             {
@@ -124,8 +134,7 @@ namespace TestGoogleDrive.Controllers
                 return NotFound();
             }
 
-            var configPath = await _context.ConfigPath
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var configPath = await _context.ConfigPath.FirstOrDefaultAsync(m => m.Id == id);
             if (configPath == null)
             {
                 return NotFound();
