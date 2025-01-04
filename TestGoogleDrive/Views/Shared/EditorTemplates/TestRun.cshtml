@@ -17,6 +17,7 @@
         </div>
     </div>
 </div>
+<div id="configPathDisplay">Config Path: </div>
 <div>
     <div class="h6">
         Results
@@ -45,9 +46,16 @@
     </div>
     <div class="ps-2 pb-3">
         <div class="form-group">
-            <select class="form-select-input" asp-for="CommitId" asp-items=@(ViewData["commits"] as IEnumerable<SelectListItem>)>
+            <select id="configSelect" class="form-select-input" asp-for="CommitId" asp-items=@(ViewData["commits"] as IEnumerable<SelectListItem>)>
                 <option value="">Choose commit...</option>
             </select>
         </div>
     </div>
 </div>
+
+@section Scripts
+{
+    <script>
+        commonlyUsedFunction(); //Function is Accessible Here
+    </script>
+}
