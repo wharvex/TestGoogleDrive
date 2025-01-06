@@ -27,21 +27,12 @@
 @section Scripts {
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
     <script>
-        console.log("hey");
-        var selectElement = document.querySelector("#configSelect");
-        console.log(selectElement);
-
+        // global $:false
+        // global ready:false
         $(document).ready(function() {
-            console.log("hey2")
-            $('#configSelect').change(function() {
-                console.log("hey3");
+            $("#configSelect").change(function() {
+                console.log("hey77");
             });
         });
-
-        selectElement.addEventListener("change",
-            (event) => {
-                console.log(`You chose ${event.target.value}`);
-            });
-
     </script>
 }
