@@ -29,9 +29,17 @@
     <script>
         // global $:false
         // global ready:false
+        // global ajax:false
         $(document).ready(function() {
             $("#configSelect").change(function() {
-                console.log("hey77");
+                var selectedConfigId = this.value;
+                $.ajax({
+                    url: '/TestRuns/GetConfigPath',
+                    data: { configId: selectedConfigId },
+                    success: function(data) {
+                        console.log(data.configPath);
+                    }
+                });
             });
         });
     </script>
