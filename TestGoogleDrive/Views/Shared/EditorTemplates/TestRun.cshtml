@@ -11,7 +11,7 @@
     </div>
     <div class="ps-2 pb-3">
         <div class="form-group">
-            <select class="form-select-input" asp-for="ConfigId" asp-items=@(ViewData["configs"] as IEnumerable<SelectListItem>)>
+            <select id="configSelect" class="form-select-input" asp-for="ConfigId" asp-items=@(ViewData["configs"] as IEnumerable<SelectListItem>)>
                 <option value="">Choose config...</option>
             </select>
         </div>
@@ -46,16 +46,9 @@
     </div>
     <div class="ps-2 pb-3">
         <div class="form-group">
-            <select id="configSelect" class="form-select-input" asp-for="CommitId" asp-items=@(ViewData["commits"] as IEnumerable<SelectListItem>)>
+            <select class="form-select-input" asp-for="CommitId" asp-items=@(ViewData["commits"] as IEnumerable<SelectListItem>)>
                 <option value="">Choose commit...</option>
             </select>
         </div>
     </div>
 </div>
-
-@section Scripts
-{
-    <script>
-        commonlyUsedFunction(); //Function is Accessible Here
-    </script>
-}
