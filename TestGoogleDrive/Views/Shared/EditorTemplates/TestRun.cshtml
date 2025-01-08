@@ -10,30 +10,39 @@
         Config
     </div>
     <div class="ps-2 pb-3">
-        <div class="form-group">
-            <select id="configSelect" class="form-select-input" asp-for="ConfigId" asp-items=@(ViewData["configs"] as IEnumerable<SelectListItem>)>
+        <div>
+            <select id="configSelect" class="form-select" asp-for="ConfigId" asp-items=@(ViewData["configs"] as IEnumerable<SelectListItem>)>
                 <option value="">Choose config...</option>
             </select>
         </div>
     </div>
 </div>
-<div id="configPathDisplay">Config Path: </div>
+<div>
+    <div class="h6">
+        Config Path
+    </div>
+    <div class="ps-2 pb-3">
+        <div>
+            <span id="configPathDisplay"></span>
+        </div>
+    </div>
+</div>
 <div>
     <div class="h6">
         Results
     </div>
     <div class="ps-2">
-        <div class="form-group form-check">
+        <div class="form-check">
             <label class="form-check-label">
                 <input class="form-check-input" asp-for="AppearsExactlyOnce"/> @Html.DisplayNameFor(model => model.AppearsExactlyOnce)
             </label>
         </div>
-        <div class="form-group form-check">
+        <div class="form-check">
             <label class="form-check-label">
                 <input class="form-check-input" asp-for="NotUnderPlainDrives"/> @Html.DisplayNameFor(model => model.NotUnderPlainDrives)
             </label>
         </div>
-        <div class="form-group form-check">
+        <div class="form-check">
             <label class="form-check-label">
                 <input class="form-check-input" asp-for="OpensMyDriveDirectly"/> @Html.DisplayNameFor(model => model.OpensMyDriveDirectly)
             </label>
@@ -45,8 +54,8 @@
         Commit
     </div>
     <div class="ps-2 pb-3">
-        <div class="form-group">
-            <select class="form-select-input" asp-for="CommitId" asp-items=@(ViewData["commits"] as IEnumerable<SelectListItem>)>
+        <div>
+            <select class="form-select" asp-for="CommitId" asp-items=@(ViewData["commits"] as IEnumerable<SelectListItem>)>
                 <option value="">Choose commit...</option>
             </select>
         </div>
