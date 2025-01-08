@@ -25,22 +25,8 @@
 </div>
 
 @section Scripts {
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
-    <script>
-        // global $:false
-        // global ready:false
-        // global ajax:false
-        $(document).ready(function() {
-            $("#configSelect").change(function() {
-                var selectedConfigId = this.value;
-                $.ajax({
-                    url: '/TestRuns/GetConfigPath',
-                    data: { configId: selectedConfigId },
-                    success: function(data) {
-                        console.log(data.configPath);
-                    }
-                });
-            });
-        });
-    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        await Html.RenderPartialAsync("_CustomScriptsPartial");
+    }
 }
