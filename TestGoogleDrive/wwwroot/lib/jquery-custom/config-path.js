@@ -7,6 +7,7 @@ $(document).ready(function () {
             data: { configId: selectedConfigId },
             success: function (data) {
                 console.log(data.configPath);
+                console.log(data.configPathId);
                 $("#configPathDisplay").text(data.configPath);
             }
         });

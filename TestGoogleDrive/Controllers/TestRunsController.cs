@@ -174,9 +174,13 @@ namespace TestGoogleDrive.Controllers
 
         public JsonResult GetConfigPath(int configId)
         {
-            var configPath = _context.Find<ConfigPath>(configId)?.Path ?? "??";
+            var targetConfigPath = _context.ConfigPath.FirstOrDefault(cp =>
+                cp.ConfigId == configId
+            );
+            var configPathPathStr = targetConfigPath?.Path ?? "??";
+            var configPathIdStr = targetConfigPath?.Id.ToString() ?? "??";
 
-            return Json(new { configPath });
+            return Json(new { configPath = configPathPathStr, configPathId = configPathIdStr });
         }
 
         private bool TestRunExists(int id)
