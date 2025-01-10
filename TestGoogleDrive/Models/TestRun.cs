@@ -34,4 +34,8 @@ public class TestRun
     [UIHint("_BoolIconTemplatePartial")]
     [DisplayName("Opens 'My Drive' directly")]
     public bool OpensMyDriveDirectly { get; set; }
+
+    [UIHint("_BoolIconTemplatePartial")]
+    [DisplayName("Has expected system path")]
+    public bool HasExpectedPath { get; set; }
 }

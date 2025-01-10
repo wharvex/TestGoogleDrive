@@ -14,6 +14,8 @@ namespace TestGoogleDrive.Controllers
     public class TestRunsController : Controller
     {
         private readonly TestGoogleDriveContext _context;
+        private const string BindParamsInclude =
+            "Id,CommitId,ConfigId,AppearsExactlyOnce,NotUnderPlainDrives,OpensMyDriveDirectly,HasExpectedPath";
 
         public TestRunsController(TestGoogleDriveContext context)
         {
@@ -64,12 +66,7 @@ namespace TestGoogleDrive.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(
-            [Bind(
-                "Id,CommitId,ConfigId,AppearsExactlyOnce,NotUnderPlainDrives,OpensMyDriveDirectly"
-            )]
-                TestRun testRun
-        )
+        public async Task<IActionResult> Create([Bind(BindParamsInclude)] TestRun testRun)
         {
             if (!ModelState.IsValid)
             {
@@ -104,13 +101,7 @@ namespace TestGoogleDrive.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(
-            int id,
-            [Bind(
-                "Id,IsDriveLetter,IsMirrored,AppearsExactlyOnce,NotUnderPlainDrives,OpensMyDriveDirectly"
-            )]
-                TestRun testRun
-        )
+        public async Task<IActionResult> Edit(int id, [Bind(BindParamsInclude)] TestRun testRun)
         {
             if (id != testRun.Id)
             {

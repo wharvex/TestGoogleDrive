@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Regression Test Runs Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -26,6 +26,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.OpensMyDriveDirectly)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasExpectedPath)
             </th>
             <th class="pe-5">
                 Actions
@@ -49,6 +52,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.OpensMyDriveDirectly)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasExpectedPath)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Ed</a> |

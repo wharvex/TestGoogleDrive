@@ -1,5 +1,5 @@
 ﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+    Editor Template for TestRun.
 *@
 
 @model TestRun
@@ -45,6 +45,11 @@
         <div class="form-check">
             <label class="form-check-label">
                 <input class="form-check-input" asp-for="OpensMyDriveDirectly"/> @Html.DisplayNameFor(model => model.OpensMyDriveDirectly)
+            </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="HasExpectedPath"/> @Html.DisplayNameFor(model => model.HasExpectedPath)
             </label>
         </div>
     </div>
