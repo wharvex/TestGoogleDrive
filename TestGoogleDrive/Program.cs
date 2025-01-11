@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using TestGoogleDrive.Data;
+
 namespace TestGoogleDrive
 {
     public class Program
@@ -9,7 +10,13 @@ namespace TestGoogleDrive
         {
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddDbContext<TestGoogleDriveContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("TestGoogleDriveContext") ?? throw new InvalidOperationException("Connection string 'TestGoogleDriveContext' not found.")));
+                options.UseSqlServer(
+                    builder.Configuration.GetConnectionString("TestGoogleDriveContext")
+                        ?? throw new InvalidOperationException(
+                            "Connection string 'TestGoogleDriveContext' not found."
+                        )
+                )
+            );
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -31,8 +38,9 @@ namespace TestGoogleDrive
 
             app.MapStaticAssets();
             app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}")
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}"
+                )
                 .WithStaticAssets();
 
             app.Run();
