@@ -49,7 +49,7 @@
       * Check RT3-C4: Does clicking on Google Drive open the correct file system path for the settings configuration?
         * Expected: Yes
         * Actual: 
-  * Test R4
+  * Test RT4
     * Setup
       * Set Google Drive preferences to Syncing Stream, StreamLoc DriveLetter
     * Checks
